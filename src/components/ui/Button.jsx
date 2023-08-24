@@ -6,7 +6,7 @@ const Button = ({ children, variant, size, isFullWidth, disabled, ...props }) =>
     <StyledButton
       variant={variant}
       size={size}
-      isFullWidth={isFullWidth}
+      $isFullWidth={isFullWidth}
       disabled={disabled}
       {...props}
     >
