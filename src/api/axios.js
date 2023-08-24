@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { navigate } from 'react-router-dom';
 
 export const BASE_URL = 'https://www.pre-onboarding-selection-task.shop/';
 
@@ -28,11 +27,7 @@ api.interceptors.response.use(
     return response;
   },
   error => {
-    if (error.response && error.response.status === 401) {
-      navigate('/signin');
-    } else {
-      console.error('다음 오류가 발생했습니다:', error);
-    }
+    console.error('다음 오류가 발생했습니다:', error);
     return Promise.reject(error);
   },
 );
