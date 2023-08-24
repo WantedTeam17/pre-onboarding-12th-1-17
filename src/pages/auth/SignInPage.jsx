@@ -1,26 +1,61 @@
 import { styled } from 'styled-components';
 import Input from '../../components/ui/Input';
 import { useValidation } from '../../hooks/useValidation';
+import { useState } from 'react';
+import api from '../../api/axios';
+import { useAuthContext } from '../../context/AuthContext';
 
-export const SignInPage = () => {
-  const { email, setEmail, password, setPassword, validateEmail, validatePassword } =
-    useValidation();
+function SignInPage() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const { setToken } = useAuthContext();
+
+  const handleEmailChange = e => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = e => {
+    setPassword(e.target.value);
+  };
+
+  const handleLogin = async () => {
+    try {
+      // 로그인 요청
+      const response = await api.post('/auth/signin', {
+        email,
+        password,
+      });
+
+      // 로그인 성공시 JWT 토큰을 받음
+      if (response.status === 200) {
+        const token = response.data.access_token;
+
+        // JWT 토큰을 AuthContext에 저장하고 이동
+        setToken(token);
+
+        alert('로그인 성공!');
+      } else {
+        console.error('로그인에 실패하였습니다.');
+      }
+    } catch (error) {
+      console.error('로그인 요청 중 오류 발생:', error);
+    }
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
+    handleLogin();
   };
 
-  const isSubmitDisabled = !validateEmail() || !validatePassword();
-
   return (
-      <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
         <InputBox>
           <Input
             testId="email-input"
             placeholder="이메일을 입력해주세요"
-            type="email"
+            type="text"
             value={email}
-            onChange={event => setEmail(event.target.value)}
+            onChange={handleEmailChange}
             id="email"
           />
           <Input
@@ -28,17 +63,17 @@ export const SignInPage = () => {
             placeholder="비밀번호를 입력해주세요"
             type="password"
             value={password}
-            onChange={event => setPassword(event.target.value)}
+            onChange={handlePasswordChange}
             id="password"
           />
         </InputBox>
 
         <button data-testid="signup-button" type="submit" disabled={isSubmitDisabled}>
-          제출
+          로그인
         </button>
-      </form>
+    </form>
   );
-};
+}
 
 export default SignInPage;
 
