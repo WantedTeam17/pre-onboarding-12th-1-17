@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import api from '../../api/axios';
-import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../../context/AuthContext';
 
 function SignInPage() {
-  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { setToken } = useAuthContext();
 
   const handleEmailChange = e => {
     setEmail(e.target.value);
@@ -26,12 +26,11 @@ function SignInPage() {
       // 로그인 성공시 JWT 토큰을 받음
       if (response.status === 200) {
         const token = response.data.access_token;
-        // JWT 토큰을 로컬 스토리지에 저장
-        localStorage.setItem('token', token);
 
-        // 로그인 성공 후 /todo 페이지로 리다이렉트
-        alert('success');
-        return navigate('/todo');
+        // JWT 토큰을 AuthContext에 저장하고 이동
+        setToken(token);
+
+        alert('로그인 성공!');
       } else {
         console.error('로그인에 실패하였습니다.');
       }
