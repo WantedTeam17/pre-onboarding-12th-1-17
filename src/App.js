@@ -7,8 +7,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <AuthContextProvider>
-        <PageLayout />
-        <AppRoutes />
+        <PageLayout>
+          <AppRoutes />
+        </PageLayout>
       </AuthContextProvider>
     </BrowserRouter>
   );
