@@ -1,24 +1,21 @@
 import { signUp } from '../../api/auth';
+import { useAuthContext } from '../../context/AuthContext';
 import { useValidation } from '../../hooks/useValidation';
-import { useNavigate } from 'react-router-dom';
 
 export const SignUpPage = () => {
   const { email, setEmail, password, setPassword, validateEmail, validatePassword } =
     useValidation();
-  const navigate = useNavigate();
+  const { setToken } = useAuthContext();
 
   const handleSubmit = async event => {
     event.preventDefault();
 
     const result = await signUp(email, password);
     if (result.success) {
-      // 회원가입 성공 처리
       alert('회원가입이 성공적으로 완료되었습니다. 로그인 페이지로 이동합니다.');
-      navigate('/signin');
+      setToken(result.access_token);
     } else {
-      // 회원가입 실패 처리
       console.error('회원가입 실패:', result.error);
-      // 이후 실패 시 사용자에게 알림을 주거나 다른 작업을 수행할 수 있습니다.
     }
   };
 
