@@ -1,5 +1,6 @@
 import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
+import { TodoContextProvider } from './context/TodoContext';
 import PageLayout from './layout/PageLayout';
 import AppRoutes from './routes';
 
@@ -7,9 +8,10 @@ const App = () => {
   return (
     <BrowserRouter>
       <AuthContextProvider>
-        <PageLayout>
+        <TodoContextProvider>
+          <PageLayout />
           <AppRoutes />
-        </PageLayout>
+        </TodoContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   );
