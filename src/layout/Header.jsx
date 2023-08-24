@@ -1,20 +1,57 @@
 import { styled } from 'styled-components';
 import Button from '../components/ui/Button';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../context/AuthContext';
 
 const Header = () => {
-  // TODO: 로그인 된지 안된지 확인 후 버튼쪽(로그인, 회원가입 / 로그아웃) 바꾸기
+  const navigate = useNavigate();
+  const { accessToken, removeToken } = useAuthContext();
+
+  const goSignIn = () => {
+    navigate('/signin');
+  };
+
+  const goSignUp = () => {
+    navigate('/signup');
+  };
   return (
     <HeaderContainer>
       <HeaderBox>
         <H1>My Wanted Todo APP</H1>
-        <div style={{ display: 'flex', gap: '1rem' }}>
-          <Button variant="secondary" size="medium" isFullWidth={false} disabled={false}>
-            로그인
-          </Button>
-          <Button variant="primary" size="medium" isFullWidth={false} disabled={false}>
-            회원가입
-          </Button>
-        </div>
+        {accessToken ? (
+          <div>
+            <Button
+              variant="primary"
+              size="medium"
+              isFullWidth={false}
+              disabled={false}
+              onClick={removeToken}
+            >
+              로그아웃
+            </Button>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <Button
+              variant="secondary"
+              size="medium"
+              isFullWidth={false}
+              disabled={false}
+              onClick={goSignIn}
+            >
+              로그인
+            </Button>
+            <Button
+              variant="primary"
+              size="medium"
+              isFullWidth={false}
+              disabled={false}
+              onClick={goSignUp}
+            >
+              회원가입
+            </Button>
+          </div>
+        )}
       </HeaderBox>
     </HeaderContainer>
   );
