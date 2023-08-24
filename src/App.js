@@ -9,8 +9,9 @@ const App = () => {
     <BrowserRouter>
       <AuthContextProvider>
         <TodoContextProvider>
-          <PageLayout />
-          <AppRoutes />
+          <PageLayout>
+            <AppRoutes />
+          </PageLayout>
         </TodoContextProvider>
       </AuthContextProvider>
     </BrowserRouter>

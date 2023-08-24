@@ -1,20 +1,19 @@
 import { styled } from 'styled-components';
 import Input from '../../components/ui/Input';
 import { useValidation } from '../../hooks/useValidation';
-import { useState } from 'react';
 import api from '../../api/axios';
 import { useAuthContext } from '../../context/AuthContext';
 
 function SignInPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { email, setEmail, password, setPassword, validateEmail, validatePassword } =
+    useValidation();
   const { setToken } = useAuthContext();
 
-  const handleEmailChange = e => {
+  const handleChangeEmail = e => {
     setEmail(e.target.value);
   };
 
-  const handlePasswordChange = e => {
+  const handleChangePassword = e => {
     setPassword(e.target.value);
   };
 
@@ -47,30 +46,30 @@ function SignInPage() {
     handleLogin();
   };
 
+  const isSubmitDisabled = !validateEmail() || !validatePassword();
+
   return (
     <form onSubmit={handleSubmit}>
-        <InputBox>
-          <Input
-            testId="email-input"
-            placeholder="이메일을 입력해주세요"
-            type="text"
-            value={email}
-            onChange={handleEmailChange}
-            id="email"
-          />
-          <Input
-            testId="password-input"
-            placeholder="비밀번호를 입력해주세요"
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
-            id="password"
-          />
-        </InputBox>
+      <InputBox>
+        <Input
+          testId="email-input"
+          placeholder="이메일을 입력해주세요"
+          type="text"
+          value={email}
+          onChange={handleChangeEmail}
+        />
+        <Input
+          testId="password-input"
+          placeholder="비밀번호를 입력해주세요"
+          type="password"
+          value={password}
+          onChange={handleChangePassword}
+        />
+      </InputBox>
 
-        <button data-testid="signup-button" type="submit" disabled={isSubmitDisabled}>
-          로그인
-        </button>
+      <button data-testid="signin-button" type="submit" disabled={isSubmitDisabled}>
+        로그인
+      </button>
     </form>
   );
 }

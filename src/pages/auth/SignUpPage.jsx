@@ -9,6 +9,14 @@ export const SignUpPage = () => {
     useValidation();
   const { setToken } = useAuthContext();
 
+  const handleChangeEmail = e => {
+    setEmail(e.target.value);
+  };
+
+  const handleChangePassword = e => {
+    setPassword(e.target.value);
+  };
+
   const handleSubmit = async event => {
     event.preventDefault();
 
@@ -31,21 +39,20 @@ export const SignUpPage = () => {
           placeholder="이메일을 입력해주세요"
           type="email"
           value={email}
-          onChange={event => setEmail(event.target.value)}
-          id="email"
+          onChange={handleChangeEmail}
         />
         <Input
           testId="password-input"
           placeholder="비밀번호를 입력해주세요"
           type="password"
           value={password}
-          onChange={event => setPassword(event.target.value)}
+          onChange={handleChangePassword}
           id="password"
         />
       </InputBox>
 
       <button data-testid="signup-button" type="submit" disabled={isSubmitDisabled}>
-        제출
+        회원가입
       </button>
     </form>
   );
