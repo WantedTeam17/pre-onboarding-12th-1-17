@@ -3,6 +3,7 @@ import { signUp } from '../../api/auth';
 import { useAuthContext } from '../../context/AuthContext';
 import { useValidation } from '../../hooks/useValidation';
 import Input from '../../components/ui/Input';
+import Button from '../../components/ui/Button';
 
 export const SignUpPage = () => {
   const { email, setEmail, password, setPassword, validateEmail, validatePassword } =
@@ -32,36 +33,47 @@ export const SignUpPage = () => {
   const isSubmitDisabled = !validateEmail() || !validatePassword();
 
   return (
-    <form onSubmit={handleSubmit}>
-      <InputBox>
-        <Input
-          testId="email-input"
-          placeholder="이메일을 입력해주세요"
-          type="email"
-          value={email}
-          onChange={handleChangeEmail}
-        />
-        <Input
-          testId="password-input"
-          placeholder="비밀번호를 입력해주세요"
-          type="password"
-          value={password}
-          onChange={handleChangePassword}
-          id="password"
-        />
-      </InputBox>
+    <form onSubmit={handleSubmit} style={{ width: '100%', height: '100%' }}>
+      <SignUpContainer>
+        <InputBox>
+          <Input
+            testId="email-input"
+            placeholder="이메일을 입력해주세요"
+            type="email"
+            value={email}
+            onChange={handleChangeEmail}
+          />
+          <Input
+            testId="password-input"
+            placeholder="비밀번호를 입력해주세요"
+            type="password"
+            value={password}
+            onChange={handleChangePassword}
+            id="password"
+          />
+        </InputBox>
 
-      <button data-testid="signup-button" type="submit" disabled={isSubmitDisabled}>
-        회원가입
-      </button>
+        <Button variant="primary" size="large" isFullWidth disabled={isSubmitDisabled}>
+          회원가입
+        </Button>
+      </SignUpContainer>
     </form>
   );
 };
 
 export default SignUpPage;
 
+const SignUpContainer = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 const InputBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.63rem;
+  margin-bottom: 3.75rem;
 `;

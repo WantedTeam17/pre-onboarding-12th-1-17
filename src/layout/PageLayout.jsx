@@ -6,7 +6,7 @@ const PageLayout = ({ children }) => {
     <Layout>
       <Header />
       <ContentsBox>
-        <main>{children}</main>
+        <main style={{ width: '100%', height: '100%' }}>{children}</main>
       </ContentsBox>
     </Layout>
   );
@@ -26,6 +26,7 @@ const ContentsBox = styled.div`
   width: max-content;
   height: 31.25rem;
   margin: auto;
+  padding: 2.75rem;
   border: 0.5px solid #a2a2a2;
   background: #fff;
   box-shadow: 4px 8px 10px 0px rgba(0, 0, 0, 0.25);
