@@ -1,3 +1,6 @@
+import { styled } from 'styled-components';
+import Input from '../../components/ui/Input';
+import { useValidation } from '../../hooks/useValidation';
 import { useState } from 'react';
 import api from '../../api/axios';
 import { useAuthContext } from '../../context/AuthContext';
@@ -46,19 +49,36 @@ function SignInPage() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <h2>로그인</h2>
-        <input type="text" placeholder="이메일" value={email} onChange={handleEmailChange} />
-        <input
-          type="password"
-          placeholder="비밀번호"
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        <button type="submit">로그인</button>
-      </div>
+        <InputBox>
+          <Input
+            testId="email-input"
+            placeholder="이메일을 입력해주세요"
+            type="text"
+            value={email}
+            onChange={handleEmailChange}
+            id="email"
+          />
+          <Input
+            testId="password-input"
+            placeholder="비밀번호를 입력해주세요"
+            type="password"
+            value={password}
+            onChange={handlePasswordChange}
+            id="password"
+          />
+        </InputBox>
+
+        <button data-testid="signup-button" type="submit" disabled={isSubmitDisabled}>
+          로그인
+        </button>
     </form>
   );
 }
 
 export default SignInPage;
+
+const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.63rem;
+`;

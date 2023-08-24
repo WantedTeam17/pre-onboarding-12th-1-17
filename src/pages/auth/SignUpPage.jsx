@@ -1,6 +1,8 @@
+import { styled } from 'styled-components';
 import { signUp } from '../../api/auth';
 import { useAuthContext } from '../../context/AuthContext';
 import { useValidation } from '../../hooks/useValidation';
+import Input from '../../components/ui/Input';
 
 export const SignUpPage = () => {
   const { email, setEmail, password, setPassword, validateEmail, validatePassword } =
@@ -23,29 +25,24 @@ export const SignUpPage = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input
-          data-testid="email-input"
-          placeholder="이메일 주소를 입력해주세요"
-          type="text"
+      <InputBox>
+        <Input
+          testId="email-input"
+          placeholder="이메일을 입력해주세요"
+          type="email"
           value={email}
           onChange={event => setEmail(event.target.value)}
           id="email"
         />
-      </div>
-
-      <div>
-        <label htmlFor="password">Password:</label>
-        <input
-          data-testid="password-input"
+        <Input
+          testId="password-input"
           placeholder="비밀번호를 입력해주세요"
           type="password"
           value={password}
           onChange={event => setPassword(event.target.value)}
           id="password"
         />
-      </div>
+      </InputBox>
 
       <button data-testid="signup-button" type="submit" disabled={isSubmitDisabled}>
         제출
@@ -55,3 +52,9 @@ export const SignUpPage = () => {
 };
 
 export default SignUpPage;
+
+const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.63rem;
+`;
