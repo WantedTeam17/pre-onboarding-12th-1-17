@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import Button from '../components/ui/Button';
 
-export const Header = () => {
+const Header = () => {
   // TODO: 로그인 된지 안된지 확인 후 버튼쪽(로그인, 회원가입 / 로그아웃) 바꾸기
   return (
     <HeaderContainer>
@@ -19,6 +19,8 @@ export const Header = () => {
     </HeaderContainer>
   );
 };
+
+export default Header;
 
 const HeaderContainer = styled.div`
   width: 100vw;
