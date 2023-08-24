@@ -1,9 +1,17 @@
-import { Header } from "./layout/Header";
+import { BrowserRouter } from 'react-router-dom';
+import { AuthContextProvider } from './context/AuthContext';
+import { Header } from './layout/Header';
+import AppRoutes from './routes';
 
-function App() {
+const App = () => {
   return (
-    <Header />
+    <BrowserRouter>
+      <AuthContextProvider>
+        <Header />
+        <AppRoutes />
+      </AuthContextProvider>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
