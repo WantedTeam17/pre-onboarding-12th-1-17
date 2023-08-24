@@ -4,6 +4,7 @@ import { useAuthContext } from '../../context/AuthContext';
 import { useValidation } from '../../hooks/useValidation';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
+import { Link } from 'react-router-dom';
 
 export const SignUpPage = () => {
   const { email, setEmail, password, setPassword, validateEmail, validatePassword } =
@@ -57,10 +58,15 @@ export const SignUpPage = () => {
           variant="primary"
           size="large"
           disabled={isSubmitDisabled}
-          style={{ width: '100%' }}
+          style={{ width: '100%', margin: '3.75rem 0 1.25rem 0' }}
         >
           회원가입
         </Button>
+        <LinkWrap>
+          <Link to="/signin" style={{ color: '#000' }}>
+            로그인 하기
+          </Link>
+        </LinkWrap>
       </SignUpContainer>
     </form>
   );
@@ -80,5 +86,9 @@ const InputBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.63rem;
-  margin-bottom: 3.75rem;
+`;
+
+const LinkWrap = styled.div`
+  width: 100%;
+  text-align: right;
 `;
