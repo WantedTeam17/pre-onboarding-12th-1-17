@@ -6,7 +6,7 @@ import { fetchTodo as getTodos } from '../../api/todo';
 import TodoList from '../../components/todo/TodoList';
 
 const TodoPage = () => {
-  const { setTodos } = useTodoContext();
+  const { setTodoList } = useTodoContext();
   const { accessToken } = useAuthContext();
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ const TodoPage = () => {
     const fetchTodos = async () => {
       try {
         const fetchedTodos = await getTodos();
-        setTodos(fetchedTodos);
+        setTodoList(fetchedTodos);
       } catch (error) {
         alert(error.message);
       }
@@ -27,7 +27,7 @@ const TodoPage = () => {
     if (accessToken) {
       fetchTodos();
     }
-  }, [setTodos, accessToken, navigate]);
+  }, [setTodoList, accessToken, navigate]);
 
   return (
     <>
