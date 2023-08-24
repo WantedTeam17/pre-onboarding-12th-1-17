@@ -3,6 +3,7 @@ import { createTodo } from '../../api/todo';
 import { useTodoContext } from '../../context/TodoContext';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
+import { styled } from 'styled-components';
 
 const AddTodo = () => {
   const { todoList: prevTodos, handleCreateTodo } = useTodoContext();
@@ -33,17 +34,29 @@ const AddTodo = () => {
 
   return (
     <form onSubmit={handleFormSubmit}>
-      <Input
-        placeholder="추가할 항목을 입력해주세요."
-        onChange={handleInputValueChange}
-        value={inputData}
-        data-testid="new-todo-input"
-      />
-      <Button variant="primary" onClick={handleFormSubmit} data-testid="new-todo-add-button">
-        추가
-      </Button>
+      <AddTodoContainer>
+        <Input
+          placeholder="추가할 항목을 입력해주세요."
+          onChange={handleInputValueChange}
+          value={inputData}
+          data-testid="new-todo-input"
+        />
+        <Button
+          variant="primary"
+          onClick={handleFormSubmit}
+          data-testid="new-todo-add-button"
+          size="large"
+        >
+          추가
+        </Button>
+      </AddTodoContainer>
     </form>
   );
 };
 
 export default AddTodo;
+
+const AddTodoContainer = styled.div`
+  display: flex;
+  gap: 1.2rem;
+`;
