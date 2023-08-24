@@ -1,4 +1,4 @@
-import api from './api';
+import api from './axios';
 
 //할 일 목록을 가져오는 API 호출 함수
 export const fetchTodo = async () => {
