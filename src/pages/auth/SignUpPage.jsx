@@ -53,7 +53,12 @@ export const SignUpPage = () => {
           />
         </InputBox>
 
-        <Button variant="primary" size="large" isFullWidth disabled={isSubmitDisabled}>
+        <Button
+          variant="primary"
+          size="large"
+          disabled={isSubmitDisabled}
+          style={{ width: '100%' }}
+        >
           회원가입
         </Button>
       </SignUpContainer>

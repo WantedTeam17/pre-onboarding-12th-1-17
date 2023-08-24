@@ -68,7 +68,12 @@ function SignInPage() {
             onChange={handleChangePassword}
           />
         </InputBox>
-        <Button variant="primary" size="large" isFullWidth disabled={isSubmitDisabled}>
+        <Button
+          variant="primary"
+          size="large"
+          disabled={isSubmitDisabled}
+          style={{ width: '100%' }}
+        >
           로그인
         </Button>
       </SignInContainer>
