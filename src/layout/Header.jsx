@@ -1,15 +1,19 @@
 import { styled } from 'styled-components';
+import Button from '../components/ui/Button';
 
 export const Header = () => {
   // TODO: 로그인 된지 안된지 확인 후 버튼쪽(로그인, 회원가입 / 로그아웃) 바꾸기
-  // TODO: 버튼 컴포넌트 사용
   return (
     <HeaderContainer>
       <HeaderBox>
         <H1>My Wanted Todo APP</H1>
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <button style={{ width: '7.5rem', height: '3.75rem' }}>로그인</button>
-          <button type="button" style={{ width: '7.5rem', height: '3.75rem' }}>회원가입</button>
+          <Button variant="secondary" size="medium" isFullWidth={false} disabled={false}>
+            로그인
+          </Button>
+          <Button variant="primary" size="medium" isFullWidth={false} disabled={false}>
+            회원가입
+          </Button>
         </div>
       </HeaderBox>
     </HeaderContainer>
