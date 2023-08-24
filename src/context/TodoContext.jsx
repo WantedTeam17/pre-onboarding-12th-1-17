@@ -14,20 +14,20 @@ export const useTodoContext = () => {
 export const TodoContextProvider = ({ children }) => {
   const [todoList, setTodoList] = useState([]);
 
-  const handleCreateTodo = (todos, newTodos) => {
-    const newTodoData = [...todos, newTodos];
+  const handleCreateTodo = (todoList, newTodoLists) => {
+    const newTodoData = [...todoList, newTodoLists];
 
     setTodoList(newTodoData);
   };
 
-  const handleUpdateTodo = (todos, newTodo, id) => {
-    const updatedTodoData = todos.map(todo => (todo.id === id ? newTodo : todo));
+  const handleUpdateTodo = (todoList, newTodo, id) => {
+    const updatedTodoData = todoList.map(todo => (todo.id === id ? newTodo : todo));
 
     setTodoList(updatedTodoData);
   };
 
-  const handleDeleteTodo = (todos, id) => {
-    const deletedTodoData = todos.filter(todo => todo.id !== id);
+  const handleDeleteTodo = (todoList, id) => {
+    const deletedTodoData = todoList.filter(todo => todo.id !== id);
 
     setTodoList(deletedTodoData);
   };
