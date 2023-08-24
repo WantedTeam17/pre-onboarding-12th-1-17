@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { navigate } from 'react-router-dom';
 
 export const BASE_URL = 'https://www.pre-onboarding-selection-task.shop/';
 
@@ -11,7 +12,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   config => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -27,9 +28,8 @@ api.interceptors.response.use(
     return response;
   },
   error => {
-    // 공통적인 에러 처리 추가
     if (error.response && error.response.status === 401) {
-      // 인증 관련 에러 처리
+      navigate('/signin');
     } else {
       console.error('다음 오류가 발생했습니다:', error);
     }
