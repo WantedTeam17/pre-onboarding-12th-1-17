@@ -79,7 +79,7 @@ const TodoListItem = ({ todo, userId, id, isCompleted }) => {
             data-testid="modify-input"
           />
         ) : (
-          <span>{todo}</span>
+          <span style={{fontSize:"1.125rem"}}>{todo}</span>
         )}
       </TodoItemLabel>
       {isEditing ? (
@@ -132,6 +132,7 @@ const TodoItem = styled.li`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  padding-left: -2rem;
 `;
 
 const TodoItemLabel = styled.label`
@@ -166,7 +167,8 @@ const InputEdit = styled.input`
   outline: none;
   border-radius: 10px;
   box-sizing: border-box;
-  border: 1px solid #a2a2a2;
+  border: 0.5px solid #a2a2a2;
+  font-size: 1.125rem;
 
   &:focus {
     border-color: ${colors.primary};

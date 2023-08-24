@@ -23,6 +23,7 @@ const TodoList = () => {
 export default TodoList;
 
 const TodoListContainer = styled.div`
+  display: flex;
   padding: 20px;
   background-color: ${colors.white};
   flex-direction: column;
@@ -31,4 +32,5 @@ const TodoListContainer = styled.div`
 
 const TodosList = styled.ul`
   margin-top: 20px;
+  padding: 0;
 `;
