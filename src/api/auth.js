@@ -32,7 +32,7 @@ export const signIn = async (email, password) => {
 
   if (result.success) {
     const token = result.data.access_token;
-    localStorage.setItem(process.env.REACT_APP_ACCEESS_TOKEN, token);
+    localStorage.setItem(process.env.REACT_APP_ACCESS_TOKEN, token);
   }
 
   return result;
