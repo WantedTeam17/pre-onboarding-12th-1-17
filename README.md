@@ -11,7 +11,7 @@
 코드의 가독성, 재사용성, 유지보수성, 가장 최적에 가까운 구현 방식을 BEST로 선정하였습니다.
 
 ### 배포 링크
-[배포 링크 - Vercel](pre-onboarding-12th-team17-1-1.vercel.app/)
+[배포 링크 - Vercel](https://pre-onboarding-12th-team17-1-1.vercel.app/)
 
 <br/><br/>
 ### 프로젝트 실행 방법
