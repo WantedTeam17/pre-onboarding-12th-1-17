@@ -1,23 +1,23 @@
 import api from '../../api/axios';
 import { Link } from 'react-router-dom';
-import { styled } from 'styled-components';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import { useValidation } from '../../hooks/useValidation';
 import { useAuthContext } from '../../context/AuthContext';
+import { AuthPageLayout, InputBox, InputLabel, ErrorText, LinkWrap } from '../../constants/style.d';
 
 function SignInPage() {
-  const { email, setEmail, password, setPassword, validateEmail, validatePassword } =
-    useValidation();
+  const {
+    email,
+    password,
+    validateEmail,
+    validatePassword,
+    handleChangeEmail,
+    handleChangePassword,
+    emailError,
+    passwordError,
+  } = useValidation();
   const { setToken } = useAuthContext();
-
-  const handleChangeEmail = e => {
-    setEmail(e.target.value);
-  };
-
-  const handleChangePassword = e => {
-    setPassword(e.target.value);
-  };
 
   const handleLogin = async () => {
     try {
@@ -47,22 +47,30 @@ function SignInPage() {
 
   return (
     <form onSubmit={handleSubmit} style={{ width: '100%', height: '100%' }}>
-      <SignInContainer>
+      <AuthPageLayout>
         <InputBox>
+          <InputLabel for="email">이메일</InputLabel>
           <Input
             testId="email-input"
             placeholder="이메일을 입력해주세요"
             type="text"
             value={email}
             onChange={handleChangeEmail}
+            id="email"
+            isError={!!emailError}
           />
+          <ErrorText>{emailError ? emailError : ''}</ErrorText>
+          <InputLabel for="password">비밀번호</InputLabel>
           <Input
             testId="password-input"
             placeholder="비밀번호를 입력해주세요"
             type="password"
             value={password}
             onChange={handleChangePassword}
+            id="password"
+            isError={!!passwordError}
           />
+          <ErrorText>{passwordError ? passwordError : ''}</ErrorText>
         </InputBox>
         <Button
           variant="primary"
@@ -77,28 +85,9 @@ function SignInPage() {
             회원가입 하기
           </Link>
         </LinkWrap>
-      </SignInContainer>
+      </AuthPageLayout>
     </form>
   );
 }
 
 export default SignInPage;
-
-const SignInContainer = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const InputBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.63rem;
-`;
-
-const LinkWrap = styled.div`
-  width: 100%;
-  text-align: right;
-`;

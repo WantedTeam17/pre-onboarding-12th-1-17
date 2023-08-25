@@ -1,23 +1,23 @@
 import { signUp } from '../../api/auth';
-import { styled } from 'styled-components';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useValidation } from '../../hooks/useValidation';
+import { AuthPageLayout, InputBox, InputLabel, ErrorText, LinkWrap } from '../../constants/style.d';
 
 export const SignUpPage = () => {
   const navigate = useNavigate();
 
-  const { email, setEmail, password, setPassword, validateEmail, validatePassword } =
-    useValidation();
-
-  const handleChangeEmail = e => {
-    setEmail(e.target.value);
-  };
-
-  const handleChangePassword = e => {
-    setPassword(e.target.value);
-  };
+  const {
+    email,
+    password,
+    emailError,
+    passwordError,
+    validateEmail,
+    validatePassword,
+    handleChangeEmail,
+    handleChangePassword,
+  } = useValidation();
 
   const handleSignup = async () => {
     const result = await signUp(email, password);
@@ -38,15 +38,20 @@ export const SignUpPage = () => {
 
   return (
     <form onSubmit={handleSubmit} style={{ width: '100%', height: '100%' }}>
-      <SignUpContainer>
+      <AuthPageLayout>
         <InputBox>
+          <InputLabel for="email">이메일</InputLabel>
           <Input
             testId="email-input"
             placeholder="이메일을 입력해주세요"
             type="email"
             value={email}
             onChange={handleChangeEmail}
+            id="email"
+            isError={!!emailError}
           />
+          <ErrorText>{emailError ? emailError : ''}</ErrorText>
+          <InputLabel for="password">비밀번호</InputLabel>
           <Input
             testId="password-input"
             placeholder="비밀번호를 입력해주세요"
@@ -54,9 +59,10 @@ export const SignUpPage = () => {
             value={password}
             onChange={handleChangePassword}
             id="password"
+            isError={!!passwordError}
           />
+          <ErrorText>{passwordError ? passwordError : ''}</ErrorText>
         </InputBox>
-
         <Button
           variant="primary"
           size="large"
@@ -70,28 +76,9 @@ export const SignUpPage = () => {
             로그인 하기
           </Link>
         </LinkWrap>
-      </SignUpContainer>
+      </AuthPageLayout>
     </form>
   );
 };
 
 export default SignUpPage;
-
-const SignUpContainer = styled.div`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-const InputBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.63rem;
-`;
-
-const LinkWrap = styled.div`
-  width: 100%;
-  text-align: right;
-`;
