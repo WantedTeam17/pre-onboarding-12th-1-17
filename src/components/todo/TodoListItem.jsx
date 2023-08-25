@@ -85,7 +85,7 @@ const TodoListItem = ({ todo, userId, id, isCompleted }) => {
             data-testid="modify-input"
           />
         ) : (
-          <span style={{fontSize:"1.125rem"}}>{todo}</span>
+          <span style={{ fontSize: '1.125rem' }}>{todo}</span>
         )}
       </TodoItemLabel>
       {isEditing ? (
@@ -146,8 +146,8 @@ const TodoItemLabel = styled.label`
   align-items: center;
 
   span {
-    opacity: ${props => (props.isCompleted ? 0.5 : 1)};
-    text-decoration: ${props => (props.isCompleted ? 'line-through' : 'none')};
+    opacity: ${props => (props.$isCompleted ? 0.5 : 1)};
+    text-decoration: ${props => (props.$isCompleted ? 'line-through' : 'none')};
   }
 `;
 
