@@ -1,16 +1,8 @@
 import { styled } from 'styled-components';
 import { colors } from '../../constants/color';
 
-const Input = ({ testId, placeholder, type, value, onChange }) => {
-  return (
-    <StyledInput
-      data-testid={testId}
-      placeholder={placeholder}
-      type={type}
-      value={value}
-      onChange={onChange}
-    ></StyledInput>
-  );
+const Input = ({ isError = false, ...props }) => {
+  return <StyledInput $isError={isError} {...props} />;
 };
 
 export default Input;
@@ -20,15 +12,19 @@ const StyledInput = styled.input`
   height: 2rem;
   border-radius: 0.625rem;
   padding: 1rem;
-  border: 0.5px solid #a2a2a2;
-  background: #fff;
+  border: 0.5px solid ${props => (props.$isError ? colors.error : colors.grey)};
+  background: ${colors.white};
   font-size: 1.5rem;
 
   &::placeholder {
-    color: #a2a2a2;
+    color: ${colors.grey};
     font-size: 1.5rem;
   }
+
+  outline: ${props => (props.$isError ? `solid 1px ${colors.error}` : 'none')};
+
   &:focus {
-    outline: solid 1px ${colors.primary};
+    outline: ${props =>
+      !props.$isError ? `solid 1px ${colors.primary}` : `solid 1px ${colors.error}`};
   }
 `;
