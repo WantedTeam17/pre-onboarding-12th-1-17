@@ -4,6 +4,7 @@ import { colors } from '../../constants/color';
 import Button from '../ui/Button';
 import { updateTodo, deleteTodo } from '../../api/todo';
 import { useTodoContext } from '../../context/TodoContext';
+import { toast } from 'react-hot-toast';
 
 const TodoListItem = ({ todo, userId, id, isCompleted }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -22,7 +23,9 @@ const TodoListItem = ({ todo, userId, id, isCompleted }) => {
       await updateTodo(newTodo);
       handleUpdateTodo(prevTodos, newTodo, id);
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message, {
+        id: 'error-update-todo',
+      });
     }
   };
 
@@ -36,7 +39,9 @@ const TodoListItem = ({ todo, userId, id, isCompleted }) => {
 
   const handleSaveEditedTodo = async () => {
     if (!editedTodo) {
-      alert('할 일을 입력해주세요.');
+      toast.error('할 일을 입력해주세요.', {
+        id: 'empty-edit-input',
+      });
       setEditedTodo(todo);
       return;
     }
@@ -52,8 +57,13 @@ const TodoListItem = ({ todo, userId, id, isCompleted }) => {
       await updateTodo(newTodo);
       handleUpdateTodo(prevTodos, newTodo, id);
       setIsEditing(false);
+      toast.success('할 일이 수정되었습니다.', {
+        id: 'success-edit-todo',
+      });
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message, {
+        id: 'error-edit-todo',
+      });
     }
   };
 
@@ -61,9 +71,13 @@ const TodoListItem = ({ todo, userId, id, isCompleted }) => {
     try {
       await deleteTodo(id);
       handleDeleteTodo(prevTodos, id);
-      alert('할 일이 삭제되었습니다.');
+      toast.success('할 일이 삭제되었습니다.', {
+        id: 'success-delete-todo',
+      });
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message, {
+        id: 'error-delete-todo',
+      });
     }
   };
 

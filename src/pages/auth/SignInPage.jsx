@@ -5,6 +5,7 @@ import Button from '../../components/ui/Button';
 import { useValidation } from '../../hooks/useValidation';
 import { useAuthContext } from '../../context/AuthContext';
 import { AuthPageLayout, InputBox, InputLabel, ErrorText, LinkWrap } from '../../constants/style.d';
+import { toast } from 'react-hot-toast';
 
 function SignInPage() {
   const {
@@ -29,7 +30,9 @@ function SignInPage() {
       if (response.status === 200) {
         const token = response.data.access_token;
         setToken(token);
-        alert('로그인 성공!');
+        toast.success('로그인 성공!', {
+          id: 'success-login',
+        });
       } else {
         console.error('로그인에 실패하였습니다.');
       }

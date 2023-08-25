@@ -4,6 +4,7 @@ import Button from '../../components/ui/Button';
 import { Link, useNavigate } from 'react-router-dom';
 import { useValidation } from '../../hooks/useValidation';
 import { AuthPageLayout, InputBox, InputLabel, ErrorText, LinkWrap } from '../../constants/style.d';
+import { toast } from 'react-hot-toast';
 
 export const SignUpPage = () => {
   const navigate = useNavigate();
@@ -22,10 +23,14 @@ export const SignUpPage = () => {
   const handleSignup = async () => {
     const result = await signUp(email, password);
     if (result.success) {
-      alert('회원가입이 성공적으로 완료되었습니다. 로그인 페이지로 이동합니다.');
+      toast.success('회원가입 성공! 로그인 페이지로 이동합니다.', {
+        id: 'success-signup',
+      });
       navigate('/signin');
     } else {
-      alert('회원가입 실패:', result.error);
+      toast.error('회원가입중 문제가 발생했습니다.', {
+        id: 'error-signup',
+      });
     }
   };
 
