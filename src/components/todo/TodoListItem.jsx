@@ -35,8 +35,9 @@ const TodoListItem = ({ todo, userId, id, isCompleted }) => {
   };
 
   const handleSaveEditedTodo = async () => {
-    if (editedTodo && editedTodo.trim() === '') {
+    if (!editedTodo) {
       alert('할 일을 입력해주세요.');
+      setEditedTodo(todo);
       return;
     }
 
@@ -64,6 +65,11 @@ const TodoListItem = ({ todo, userId, id, isCompleted }) => {
     } catch (error) {
       alert(error.message);
     }
+  };
+
+  const handleEditCancel = () => {
+    setIsEditing(false);
+    setEditedTodo(todo);
   };
 
   return (
@@ -95,7 +101,7 @@ const TodoListItem = ({ todo, userId, id, isCompleted }) => {
           <Button
             data-testid="cancel-button"
             variant="secondary"
-            onClick={() => setIsEditing(false)}
+            onClick={handleEditCancel}
             type="button"
           >
             취소

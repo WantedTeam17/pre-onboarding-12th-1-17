@@ -16,7 +16,7 @@ const AddTodo = () => {
   const handleFormSubmit = async event => {
     event.preventDefault();
 
-    if (inputData && inputData.trim() === '') {
+    if (!inputData) {
       alert('할 일을 입력해주세요.');
       return;
     }
