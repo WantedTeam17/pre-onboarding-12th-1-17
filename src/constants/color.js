@@ -3,4 +3,5 @@ export const colors = {
   white: '#FFFFFF',
   grey: '#A2A2A2',
   error: '#FF0000',
+  primaryHover: '#7FBF7F',
 };
