@@ -1,10 +1,12 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
-import SignInPage from './pages/auth/SignInPage';
-import SignUpPage from './pages/auth/SignUpPage';
-import NotFoundPage from './pages/notFound/NotFoundPage';
-import TodoPage from './pages/todo/TodoPage';
+import { lazy } from 'react';
 import PublicRoute from './pages/redirect/PublicRoute';
 import PrivateRoute from './pages/redirect/PrivateRoute';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+const SignInPage = lazy(() => import('./pages/auth/SignInPage'));
+const SignUpPage = lazy(() => import('./pages/auth/SignUpPage'));
+const NotFoundPage = lazy(() => import('./pages/notFound/NotFoundPage'));
+const TodoPage = lazy(() => import('./pages/todo/TodoPage'));
 
 export default function App() {
   return (
