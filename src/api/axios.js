@@ -12,7 +12,7 @@ const api = axios.create({
 //Axios 요청 인터셉터를 추가하여 Authorization 헤더에 JWT 토큰을 포함
 api.interceptors.request.use(
   config => {
-    const token = localStorage.getItem(process.env.REACT_APP_ACCEESS_TOKEN);
+    const token = localStorage.getItem(process.env.REACT_APP_ACCESS_TOKEN);
 
     // 토큰을 찾았다면, 요청의 Authorization 헤더에 추가
     if (token) {

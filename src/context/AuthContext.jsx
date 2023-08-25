@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 import { useNavigate } from 'react-router';
 
-const access_token = process.env.REACT_APP_ACCEESS_TOKEN;
+const access_token = process.env.REACT_APP_ACCESS_TOKEN;
 
 const AuthContext = createContext();
 
