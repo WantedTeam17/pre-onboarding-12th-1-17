@@ -1,10 +1,10 @@
+import api from '../../api/axios';
+import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
 import Input from '../../components/ui/Input';
-import { useValidation } from '../../hooks/useValidation';
-import api from '../../api/axios';
-import { useAuthContext } from '../../context/AuthContext';
 import Button from '../../components/ui/Button';
-import { Link } from 'react-router-dom';
+import { useValidation } from '../../hooks/useValidation';
+import { useAuthContext } from '../../context/AuthContext';
 
 function SignInPage() {
   const { email, setEmail, password, setPassword, validateEmail, validatePassword } =
@@ -21,19 +21,14 @@ function SignInPage() {
 
   const handleLogin = async () => {
     try {
-      // 로그인 요청
       const response = await api.post('/auth/signin', {
         email,
         password,
       });
 
-      // 로그인 성공시 JWT 토큰을 받음
       if (response.status === 200) {
         const token = response.data.access_token;
-
-        // JWT 토큰을 AuthContext에 저장하고 이동
         setToken(token);
-
         alert('로그인 성공!');
       } else {
         console.error('로그인에 실패하였습니다.');

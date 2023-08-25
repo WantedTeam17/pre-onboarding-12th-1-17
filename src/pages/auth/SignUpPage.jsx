@@ -1,15 +1,15 @@
-import { styled } from 'styled-components';
 import { signUp } from '../../api/auth';
-import { useAuthContext } from '../../context/AuthContext';
-import { useValidation } from '../../hooks/useValidation';
+import { styled } from 'styled-components';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useValidation } from '../../hooks/useValidation';
 
 export const SignUpPage = () => {
+  const navigate = useNavigate();
+
   const { email, setEmail, password, setPassword, validateEmail, validatePassword } =
     useValidation();
-  const { setToken } = useAuthContext();
 
   const handleChangeEmail = e => {
     setEmail(e.target.value);
@@ -19,16 +19,19 @@ export const SignUpPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async event => {
-    event.preventDefault();
-
+  const handleSignup = async () => {
     const result = await signUp(email, password);
     if (result.success) {
       alert('회원가입이 성공적으로 완료되었습니다. 로그인 페이지로 이동합니다.');
-      setToken(result.access_token);
+      navigate('/signin');
     } else {
-      console.error('회원가입 실패:', result.error);
+      alert('회원가입 실패:', result.error);
     }
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    handleSignup();
   };
 
   const isSubmitDisabled = !validateEmail() || !validatePassword();
