@@ -6,7 +6,7 @@ import { useValidation } from '../../hooks/useValidation';
 import { AuthPageLayout, InputBox, InputLabel, ErrorText, LinkWrap } from '../../constants/style.d';
 import { toast } from 'react-hot-toast';
 
-export const SignUpPage = () => {
+const SignUpPage = () => {
   const navigate = useNavigate();
 
   const {
