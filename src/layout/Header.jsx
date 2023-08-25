@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 import Button from '../components/ui/Button';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
+import { colors } from '../constants/color';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -63,8 +64,8 @@ const HeaderContainer = styled.div`
   width: 100vw;
   height: 10%;
   display: flex;
-  background-color: #fff;
-  border-bottom: 0.5px solid #a2a2a2;
+  background-color: ${colors.white};
+  border-bottom: 0.5px solid ${colors.grey};
 `;
 
 const HeaderBox = styled.div`

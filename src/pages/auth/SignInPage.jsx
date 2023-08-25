@@ -6,8 +6,9 @@ import { useValidation } from '../../hooks/useValidation';
 import { useAuthContext } from '../../context/AuthContext';
 import { AuthPageLayout, InputBox, InputLabel, ErrorText, LinkWrap } from '../../constants/style.d';
 import { toast } from 'react-hot-toast';
+import { colors } from '../../constants/color';
 
-function SignInPage() {
+const SignInPage = () => {
   const {
     email,
     password,
@@ -84,13 +85,13 @@ function SignInPage() {
           로그인
         </Button>
         <LinkWrap>
-          <Link to="/signup" style={{ color: '#000' }}>
+          <Link to="/signup" style={{ color: colors.black }}>
             회원가입 하기
           </Link>
         </LinkWrap>
       </AuthPageLayout>
     </form>
   );
-}
+};
 
 export default SignInPage;

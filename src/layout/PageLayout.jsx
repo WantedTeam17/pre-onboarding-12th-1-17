@@ -1,5 +1,6 @@
 import { styled } from 'styled-components';
 import Header from './Header';
+import { colors } from '../constants/color';
 
 const PageLayout = ({ children }) => {
   return (
@@ -27,7 +28,7 @@ const ContentsBox = styled.div`
   height: 31.25rem;
   margin: auto;
   padding: 2.75rem;
-  border: 0.5px solid #a2a2a2;
-  background: #fff;
+  border: 0.5px solid ${colors.grey};
+  background: ${colors.white};
   box-shadow: 4px 8px 10px 0px rgba(0, 0, 0, 0.25);
 `;

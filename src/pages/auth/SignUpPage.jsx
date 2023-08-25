@@ -5,8 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useValidation } from '../../hooks/useValidation';
 import { AuthPageLayout, InputBox, InputLabel, ErrorText, LinkWrap } from '../../constants/style.d';
 import { toast } from 'react-hot-toast';
-
-export const SignUpPage = () => {
+import { colors } from '../../constants/color';
+const SignUpPage = () => {
   const navigate = useNavigate();
 
   const {
@@ -77,7 +77,7 @@ export const SignUpPage = () => {
           회원가입
         </Button>
         <LinkWrap>
-          <Link to="/signin" style={{ color: '#000' }}>
+          <Link to="/signin" style={{ color: colors.black }}>
             로그인 하기
           </Link>
         </LinkWrap>
