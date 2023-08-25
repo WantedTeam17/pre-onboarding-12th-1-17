@@ -67,7 +67,7 @@ const StyledButton = styled.button`
   line-height: 24px;
   border-radius: 10px;
   transition: all 0.4s ease;
-  width: ${props => (props.isFullWidth ? '100%' : 'auto')};
+  width: ${props => (props.$isFullWidth ? '100%' : 'auto')};
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
   filter: ${props => (props.disabled ? 'opacity(0.5)' : 'none')};
   ${props => TYPE_VARIANTS[props.variant || 'primary']};

@@ -4,6 +4,7 @@ import { useTodoContext } from '../../context/TodoContext';
 import { useAuthContext } from '../../context/AuthContext';
 import { fetchTodo as getTodos } from '../../api/todo';
 import TodoList from '../../components/todo/TodoList';
+import { toast } from 'react-hot-toast';
 
 const TodoPage = () => {
   const { setTodoList } = useTodoContext();
@@ -20,7 +21,9 @@ const TodoPage = () => {
         const fetchedTodos = await getTodos();
         setTodoList(fetchedTodos);
       } catch (error) {
-        alert(error.message);
+        toast.error(error.message, {
+          id: 'error-fetch-todos',
+        });
       }
     };
 

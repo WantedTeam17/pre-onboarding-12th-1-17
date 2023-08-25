@@ -4,6 +4,7 @@ import { useTodoContext } from '../../context/TodoContext';
 import Input from '../ui/Input';
 import Button from '../ui/Button';
 import { styled } from 'styled-components';
+import { toast } from 'react-hot-toast';
 
 const AddTodo = () => {
   const { todoList: prevTodos, handleCreateTodo } = useTodoContext();
@@ -17,18 +18,24 @@ const AddTodo = () => {
     event.preventDefault();
 
     if (!inputData) {
-      alert('할 일을 입력해주세요.');
+      toast.error('할 일을 입력해주세요.', {
+        id: 'empty-input',
+      });
       return;
     }
 
     try {
       const newTodo = await createTodo(inputData);
       handleCreateTodo(prevTodos, newTodo);
-      alert('할 일이 추가되었습니다.');
+      toast.success('할 일이 추가되었습니다.', {
+        id: 'success-add-todo',
+      });
 
       setInputData('');
     } catch (error) {
-      alert(error.message);
+      toast.error(error.message, {
+        id: 'error-add-todo',
+      });
     }
   };
 
