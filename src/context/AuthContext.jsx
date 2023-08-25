@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react';
 import { useNavigate } from 'react-router';
 
-const ACCESS_TOKEN = 'access_token';
+const access_token = process.env.REACT_APP_ACCEESS_TOKEN;
 
 const AuthContext = createContext();
 
@@ -9,15 +9,15 @@ export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const accessToken =
-    localStorage.getItem(ACCESS_TOKEN) === '' ? null : localStorage.getItem(ACCESS_TOKEN);
+    localStorage.getItem(access_token) === '' ? null : localStorage.getItem(access_token);
 
   const setToken = accessToken => {
-    localStorage.setItem(ACCESS_TOKEN, accessToken);
+    localStorage.setItem(access_token, accessToken);
     navigate('/todo');
   };
 
   const removeToken = () => {
-    localStorage.removeItem(ACCESS_TOKEN);
+    localStorage.removeItem(access_token);
     navigate('/signin');
   };
 

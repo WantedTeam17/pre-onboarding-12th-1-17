@@ -45,9 +45,9 @@ const SignUpPage = () => {
     <form onSubmit={handleSubmit} style={{ width: '100%', height: '100%' }}>
       <AuthPageLayout>
         <InputBox>
-          <InputLabel for="email">이메일</InputLabel>
+          <InputLabel htmlFor="email">이메일</InputLabel>
           <Input
-            testId="email-input"
+            data-testid="email-input"
             placeholder="이메일을 입력해주세요"
             type="email"
             value={email}
@@ -56,9 +56,9 @@ const SignUpPage = () => {
             isError={!!emailError}
           />
           <ErrorText>{emailError ? emailError : ''}</ErrorText>
-          <InputLabel for="password">비밀번호</InputLabel>
+          <InputLabel htmlFor="password">비밀번호</InputLabel>
           <Input
-            testId="password-input"
+            data-testid="password-input"
             placeholder="비밀번호를 입력해주세요"
             type="password"
             value={password}
@@ -72,7 +72,8 @@ const SignUpPage = () => {
           variant="primary"
           size="large"
           disabled={isSubmitDisabled}
-          style={{ width: '100%', margin: '3.75rem 0 1.25rem 0' }}
+          style={{ margin: '3.75rem 0 1.25rem 0' }}
+          isFullWidth
         >
           회원가입
         </Button>
