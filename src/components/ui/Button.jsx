@@ -22,11 +22,19 @@ const TYPE_VARIANTS = {
     border: `1px solid ${colors.primary}`,
     backgroundColor: colors.primary,
     color: colors.white,
+    hover: {
+      backgroundColor: colors.primaryHover,
+      border: `1px solid ${colors.primaryHover}`,
+    },
   },
   secondary: {
     border: `1px solid ${colors.primary}`,
     backgroundColor: 'transparent',
     color: colors.primary,
+    hover: {
+      backgroundColor: colors.primary,
+      color: colors.white,
+    },
   },
   textOnly: {
     border: '1px solid transparent',
@@ -64,4 +72,11 @@ const StyledButton = styled.button`
   filter: ${props => (props.disabled ? 'opacity(0.5)' : 'none')};
   ${props => TYPE_VARIANTS[props.variant || 'primary']};
   ${props => TYPE_SIZES[props.size || 'medium']};
+
+  &:hover {
+    background-color: ${props =>
+      !props.disabled && TYPE_VARIANTS[props.variant || 'primary'].hover.backgroundColor};
+    border: ${props => !props.disabled && TYPE_VARIANTS[props.variant || 'primary'].hover.border};
+    color: ${props => TYPE_VARIANTS[props.variant || 'primary'].hover.color};
+  }
 `;
