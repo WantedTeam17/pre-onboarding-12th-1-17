@@ -13,19 +13,43 @@
 ### 배포 링크
 [배포 링크 - Vercel](https://pre-onboarding-12th-team17-1-1.vercel.app/)
 
-<br/><br/>
-### 프로젝트 실행 방법
-배포 링크를 통한 실행.
+### 시작 가이드
 
-혹은
+#### 실행을 위해 다음 모듈이 필요합니다.
+- [Node.js 18.17.0](https://nodejs.org/ca/blog/release/v18.17.0/)
 
-ZIP 파일을 다운로드 한 다음, 압축을 풀고 코드 에디터로 실행. 아래 키워드를 입력하여 실행에 필요한 패키지를 설치한 다음 프로젝트 실행.
-
-> npm i
-
-> npm run start
+#### 실행 방법
+> 1. 배포 링크를 통한 접속
+> 2. ZIP 파일 다운로드 및 압출풀기 후 코드에디터로 실행
+> 3. 아래 키워드를 통한 실행
+```bash
+$ git clone https://github.com/WantedTeam17/pre-onboarding-12th-1-17.git
+$ cd pre-onboarding-12th-1-17
+$ npm install
+$ npm run start
+```
 
 ### 사용한 기술 스택
+
+#### Environment
+
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
+
+#### Config
+
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+
+#### Development
+
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Typescript&logoColor=black)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+<img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
+<img src="https://img.shields.io/badge/context api-F5AE29?style=for-the-badge&logo=context-api&logoColor=white"/>
+<img src="https://img.shields.io/badge/react router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"/>
+![Axios](https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=black)
+
 **Javascript, HTML, CSS
 React.js, React-router-dom, Axios, styled-components**
 
@@ -102,7 +126,8 @@ React.js, React-router-dom, Axios, styled-components**
 
 
 ### 프로젝트 구조
-> .
+```bash
+> pre-onboarding-12th-1-17
 └── src/
     ├── ┣ api
     ├── ┃ ┣ auth.js
@@ -141,5 +166,5 @@ React.js, React-router-dom, Axios, styled-components**
     ├── ┣ index.css
     ├── ┣ index.js
     └── ┗ routes.js
-
+```
 
