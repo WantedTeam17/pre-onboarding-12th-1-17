@@ -1,8 +1,9 @@
+import AppRoutes from './routes';
+import { Suspense } from 'react';
+import PageLayout from './layout/PageLayout';
 import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider } from './context/AuthContext';
 import { TodoContextProvider } from './context/TodoContext';
-import PageLayout from './layout/PageLayout';
-import AppRoutes from './routes';
 
 const App = () => {
   return (
@@ -10,7 +11,9 @@ const App = () => {
       <AuthContextProvider>
         <TodoContextProvider>
           <PageLayout>
-            <AppRoutes />
+            <Suspense fallback={<div>Loading...</div>}>
+              <AppRoutes />
+            </Suspense>
           </PageLayout>
         </TodoContextProvider>
       </AuthContextProvider>
