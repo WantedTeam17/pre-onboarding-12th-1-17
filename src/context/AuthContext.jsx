@@ -5,7 +5,7 @@ const ACCESS_TOKEN = 'access_token';
 
 const AuthContext = createContext();
 
-export function AuthContextProvider({ children }) {
+export const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const accessToken =
@@ -26,11 +26,11 @@ export function AuthContextProvider({ children }) {
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
-export function useAuthContext() {
+export const useAuthContext = () => {
   const context = useContext(AuthContext);
   if (context === undefined) throw new Error('useAuthContext should be used within AuthProvider!');
 
   return context;
-}
+};
