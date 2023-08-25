@@ -7,7 +7,7 @@ import { useAuthContext } from '../../context/AuthContext';
 import { AuthPageLayout, InputBox, InputLabel, ErrorText, LinkWrap } from '../../constants/style.d';
 import { toast } from 'react-hot-toast';
 
-function SignInPage() {
+const SignInPage = () => {
   const {
     email,
     password,
@@ -91,6 +91,6 @@ function SignInPage() {
       </AuthPageLayout>
     </form>
   );
-}
+};
 
 export default SignInPage;
