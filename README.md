@@ -11,7 +11,7 @@
 코드의 가독성, 재사용성, 유지보수성을 가장 최적에 가까운 구현 방식을 BEST로 선정하였습니다.
 
 ### ✔️ 배포 
-- ```vercel``` [🔗Link]()
+- ```Google Firebase``` [🔗Link](https://pre-onboarding-1-17-deploy.web.app/)
 
 ## 🛫 시작 가이드
 
